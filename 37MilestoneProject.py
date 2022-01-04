@@ -103,7 +103,7 @@ def game():
 
         # Checking for a tie
         if gamecount==9:
-            print('Tie Game! \n Game Over!')
+            print('Tie Game! \nGame Over!')
 
         # Changing who's turn it is after every inputted move by a player 
         if turn=='X':
@@ -119,12 +119,12 @@ def keep_playing():
     game()
 
     while keep_playing==True:
-        keep_playing=input('Would you like to keep playing? (Y/N): ')
-        if keep_playing=='y' or keep_playing =='Y':
-            return True
+        play=input('Would you like to keep playing? (Y/N): ')
+        if play=='y' or play =='Y':
+            keep_playing= True
         else:
-            print('Game over! Thankyou for playing!')
-            return False
+            print('Game Over! Thankyou for playing!')
+            keep_playing= False
 
 
 keep_playing()
