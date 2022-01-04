@@ -1,4 +1,6 @@
-#Two Player Tic - Tac - Toe
+# Two Player Tic - Tac - Toe
+
+# The Components
 
 # Step 1: We use a Dictionary and its key=value to begin associating numbers to their relative positions on the board like a keypad.
 
@@ -22,18 +24,18 @@ def play_input():
     spot ='string'
     condition=False
 
-    while spot.isdigit()== False and condition==False:
-        spot=input('Which spot would you like to put your piece? (1-9)')
+    while spot.isdigit()== False or condition==False:
+        spot=input('Which spot would you like to put your piece? (1-9): ')
         if spot.isdigit()==False:
             print('Please enter a number')
         if spot.isdigit()==True:
             if int(spot) in range(1,10):
-                condition=True
+                condition==True
                 return spot
             else:
                 print('Please enter a number between 1 and 9')
-                condition=False
-                
+                condition==False
+
 # Step 4: Functionality of the game
     # Need to keep track of each turn and each each input within the board 
 
@@ -46,7 +48,8 @@ def game():
         print_board(board)
         print('It is your turn ' + turn)
         move_choice=play_input()
-
+        
+        ##
         if board[move_choice]==' ':
             board[move_choice]=turn
             gamecount+=1
@@ -54,49 +57,74 @@ def game():
             print('That spot has already been played')
             continue
 
-    # Changing who's turn it is after every move by a player 
-    for x in range(10):
+
+        # We are now going to check who wins after every 5 turns
+        if gamecount>=5:
+            # Top Row
+            if (board['7']==board['8']==board['9']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Middle Row    
+            elif (board['4']==board['5']==board['6']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Bottom Row
+            elif (board['1']==board['2']==board['3']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Diagonal (Top right to bottom left)
+            elif(board['7']==board['5']==board['3']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Diagonal (Bottom right to Top left)
+            elif(board['1']==board['5']==board['9']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Down Left
+            elif(board['7']==board['4']==board['1']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            # Down Middle
+            elif(board['8']==board['5']==board['2']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+            #Down Right
+            elif(board['9']==board['6']==board['3']!=' '):
+                print_board(board)
+                print(turn +' has won!')
+                break
+
+        # Checking for a tie
+        if gamecount==9:
+            print('Tie Game! \n Game Over!')
+
+        # Changing who's turn it is after every inputted move by a player 
         if turn=='X':
             turn='O'
         else:
             turn='X'
 
-    # We are now going to check who wins after every 5 turns
-    if gamecount>=5:
-        if (board[7]==board[8]==board[9]==turn):
-            print_board(board)
-            print(turn +'has won!')
-            
-        elif (board[4]==board[5]==board[6]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif (board[1]==board[2]==board[3]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif(board[7]==board[5]==board[3]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif(board[1]==board[5]==board[9]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif(board[7]==board[4]==board[1]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif(board[8]==board[5]==board[2]==turn):
-            print_board(board)
-            print(turn +'has won!')
-        elif(board[9]==board[6]==board[3]==turn):
-            print_board(board)
-            print(turn +'has won!')
-
-    # Checking for a tie
-
-    if gamecount==9:
-        print('Tie Game! \n Game Over!')
-
-
+# Step 5: Ask the player if they wanna keep on playing
     
+def keep_playing():
+    keep_playing=True
+
+    game()
+
+    while keep_playing==True:
+        keep_playing=input('Would you like to keep playing? (Y/N): ')
+        if keep_playing=='y' or keep_playing =='Y':
+            return True
+        else:
+            print('Game over! Thankyou for playing!')
+            return False
 
 
-
-game()
+keep_playing()
