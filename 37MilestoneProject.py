@@ -127,4 +127,6 @@ def keep_playing():
             keep_playing= False
 
 
-keep_playing()
+           
+if __name__ == "__main__":
+    keep_playing()
