@@ -115,10 +115,8 @@ def game():
     
 def keep_playing():
     keep_playing=True
-
-    game()
-
     while keep_playing==True:
+        game()
         play=input('Would you like to keep playing? (Y/N): ')
         if play=='y' or play =='Y':
             keep_playing= True
